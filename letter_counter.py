@@ -9,7 +9,7 @@ class file:
             for character in line:
                 if (ord(character)>64 and ord(character)<91) or (ord(character)>96 and ord(character)<123):
                     counter+=1
-        return counter
+        return "There are " + str(counter) + " letters in "+ self.filepath +"."
 
 fileOne = file("example.txt")
 print(fileOne.fileRead())
