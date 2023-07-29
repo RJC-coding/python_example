@@ -11,5 +11,21 @@ class file:
                     counter+=1
         return "There are " + str(counter) + " letters in "+ self.filepath +"."
 
-fileOne = file("example.txt")
-print(fileOne.fileRead())
+
+class main:
+    def getFile(self):
+        fileFound=False
+        while fileFound==False:
+            print("Please enter a filename.")
+            filepath = input()
+            try:
+                fileOne = file(filepath)
+                print(fileOne.fileRead())
+                fileFound=True
+            except:
+                print("Could not find this file.")
+
+main = main()
+main.getFile()
+    
+    
