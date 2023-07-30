@@ -23,7 +23,7 @@ class main:
                 print(fileOne.fileRead())
                 fileFound=True
             except:
-                print("Could not find this file.")
+                print("Could not read this file.")
 
 main = main()
 main.getFile()
