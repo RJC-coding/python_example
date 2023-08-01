@@ -12,19 +12,28 @@ class file:
                 if (ord(character)>64 and ord(character)<91) or (ord(character)>96 and ord(character)<123):
                     word=word+character
                 else:
-                    lineWords.append(word)
-                    word=""
-            lineList.append(lineWords)
+                    if len(word)>0:
+                        lineWords.append(word)
+                        word=""
+            LineInfo = lineInfo(line, lineWords)
+            lineList.append(LineInfo)
         return lineList
 
     def fileSearch(self, searchTerm):
+        allLines=[]
         lineList = self.fileRead()
-        for line in lineList:
-            for word in line:
-                if word.lower()==searchTerm.lower():
-                    return line
-        return None
-        
+        for lineInfo in lineList:
+            for word in lineInfo.lineWords:
+                if word.lower() in searchTerm.lower():
+                    allLines.append(lineInfo.lineString)
+        return allLines
+
+class lineInfo:
+    lineString=""
+    lineWords=[]
+    def __init__(self, lineString, lineWords):
+        self.lineString=lineString
+        self.lineWords=lineWords
 
 class main:
     def getFile(self):
@@ -41,7 +50,10 @@ class main:
                     result = fileOne.fileSearch(searchTerm)
                     if (len(result)>0):
                         print("Search term exists in file.")
-                        print(result)
+                        print("\"")
+                        for r in result:
+                            print(r)
+                        print("\"")
                     else:
                         print("Search term not in file.")
                 except:
