@@ -22,10 +22,24 @@ class file:
     def fileSearch(self, searchTerm):
         allLines=[]
         lineList = self.fileRead()
-        for lineInfo in lineList:
-            for word in lineInfo.lineWords:
-                if word.lower() in searchTerm.lower():
-                    allLines.append(lineInfo.lineString)
+        searchTermList=searchTerm.split()
+        if len(searchTermList)==1:
+            for lineInfo in lineList:
+                for word in lineInfo.lineWords:
+                    if searchTermList[0].lower() in word.lower():
+                        allLines.append(lineInfo.lineString)
+        else:
+            for lineInfo in lineList:
+                for word in lineInfo.lineWords:
+                    if searchTermList[0].lower() in word.lower():
+                        index=lineInfo.lineWords.index(word)
+                        i=1
+                        #i will refer to the second word in the searchTermList AND will be added to the index to show the next lineWord along
+                        while i<len(searchTermList):
+                            if searchTermList[i].lower() not in lineInfo.lineWords[index+i].lower():
+                                break
+                            i+=1
+                        allLines.append(lineInfo.lineString)
         return allLines
 
 class lineInfo:
