@@ -20,6 +20,9 @@ class file:
         return lineList
 
     def fileSearch(self, searchTerm):
+        #Count how many words in search term
+        #Keep adding lines from allLines until number of words is greater than those words in search term
+        #Then check against those words
         allLines=[]
         lineList = self.fileRead()
         searchTermList=searchTerm.split()
@@ -31,15 +34,19 @@ class file:
         else:
             for lineInfo in lineList:
                 for word in lineInfo.lineWords:
-                    if searchTermList[0].lower() in word.lower():
+                    if searchTermList[0].lower() == word.lower():
                         index=lineInfo.lineWords.index(word)
                         i=1
-                        #i will refer to the second word in the searchTermList AND will be added to the index to show the next lineWord along
-                        while i<len(searchTermList):
-                            if searchTermList[i].lower() not in lineInfo.lineWords[index+i].lower():
-                                break
-                            i+=1
-                        allLines.append(lineInfo.lineString)
+                        if (index+i)>len(lineInfo.lineWords)-1:
+                            break
+                        else:
+                            #i will refer to the second word in the searchTermList AND will be added to the index to show the next lineWord along
+                            while i<len(searchTermList):
+                                if searchTermList[i].lower() != lineInfo.lineWords[index+i].lower():
+                                    break
+                                else:
+                                    allLines.append(lineInfo.lineString)
+                                i+=1
         return allLines
 
 class lineInfo:
@@ -59,7 +66,7 @@ class main:
                 fileOne = file(filepath)
                 fileFound=True
                 print("Please enter a search term.")
-                searchTerm = input()
+                searchTerm = input().strip()
                 try:
                     result = fileOne.fileSearch(searchTerm)
                     if (len(result)>0):
@@ -69,7 +76,7 @@ class main:
                             print(r)
                         print("\"")
                     else:
-                        print("Search term not in file.")
+                        print("Search term is not in file.")
                 except:
                     print("Could not find this search term.")
                     break
