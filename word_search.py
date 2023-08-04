@@ -20,9 +20,6 @@ class file:
         return lineList
 
     def fileSearch(self, searchTerm):
-        #Count how many words in search term
-        #Keep adding lines from allLines until number of words is greater than those words in search term
-        #Then check against those words
         allLines=[]
         lineList = self.fileRead()
         searchTermList=searchTerm.split()
@@ -32,7 +29,29 @@ class file:
                     if searchTermList[0].lower() in word.lower():
                         allLines.append(lineInfo.lineString)
         else:
+            #Should do this two lines at a time, leapfrogging
             for lineInfo in lineList:
+                twoLinesWords=lineInfo.lineWords
+                currentIndex=lineList.index(lineInfo)
+                if currentIndex<len(lineList)-1:
+                    for w in lineList[currentIndex+1].lineWords:
+                        twoLinesWords.append(w)
+                    print(twoLinesWords)
+                for word in twoLinesWords:
+                    if searchTermList[0].lower() == word.lower():
+                        index=twoLinesWords.index(word)
+                        i=1
+                        if (index+i)>len(twoLinesWords)-1:
+                            break
+                        else:
+                            #i will refer to the second word in the searchTermList AND will be added to the index to show the next lineWord along
+                            while i<len(searchTermList):
+                                if searchTermList[i].lower() != twoLinesWords[index+i].lower():
+                                    break
+                                else:
+                                    allLines.append(lineInfo.lineString)
+                                i+=1
+                """
                 for word in lineInfo.lineWords:
                     if searchTermList[0].lower() == word.lower():
                         index=lineInfo.lineWords.index(word)
@@ -47,6 +66,7 @@ class file:
                                 else:
                                     allLines.append(lineInfo.lineString)
                                 i+=1
+                """
         return allLines
 
 class lineInfo:
