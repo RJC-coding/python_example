@@ -29,23 +29,23 @@ class file:
         for w in wordList:
             for s in searchTermList:
                 if w.wordString.lower()==s.lower():
-                    #print(str(w.wordPosition) + ": " + str(w.wordString))
                     relevantWords.append(w)
 
         finalWords=[]
         counter=0
         while counter<len(relevantWords):
             testList=relevantWords[counter:len(searchTermList)+counter]
-
             if len(testList)>1:
-                #Current only for two-word search terms; need to change
-                if testList[0].wordPosition==(testList[1].wordPosition)-1:
-                    testListStrings=[]
-                    for t in testList:
-                        testListStrings.append(t.wordString.lower())
-                    if (testListStrings==searchTermList):
+                testCounter=1
+                while testCounter<len(testList):
+                    if (testList[testCounter].wordPosition==(testList[testCounter-1].wordPosition)+1):
+                        testListStrings=[]
                         for t in testList:
-                            finalWords.append(t)
+                            testListStrings.append(t.wordString.lower())
+                        if (testListStrings==searchTermList):
+                            for t in testList:
+                                finalWords.append(t)
+                    testCounter+=1
             counter+=1
         """
         for f in finalWords:
