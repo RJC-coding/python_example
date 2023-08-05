@@ -2,64 +2,76 @@ class file:
     def __init__(self, filepath):
         self.filepath=filepath
         
-    def fileRead(self):
-        lineList=[]
+    def fileRead(self, startPoint, numWords):
+        #startPoint is index of word in entire document, numWords is number of words to look at at a time
         file = open(self.filepath, "r")
+        wordList=[]
+        lineCount=0
         for line in file:
-            lineWords=[]
-            word=""
+            wordString=""
             for character in line:
                 if (ord(character)>64 and ord(character)<91) or (ord(character)>96 and ord(character)<123):
-                    word=word+character
+                    wordString=wordString+character
                 else:
-                    if len(word)>0:
-                        lineWords.append(word)
-                        word=""
-            LineInfo = lineInfo(line, lineWords)
-            lineList.append(LineInfo)
-        return lineList
+                    if len(wordString)>0:
+                        wordOne = word(wordString, lineCount, len(wordList))
+                        wordList.append(wordOne)
+                        wordString=""
+            lineCount+=1
+        return wordList
 
     def fileSearch(self, searchTerm):
         allLines=[]
-        lineList = self.fileRead()
+        relevantWords=[]
+        wordList = self.fileRead(0, 1)
         searchTermList=searchTerm.split()
-        if len(searchTermList)==1:
-            for lineInfo in lineList:
-                for word in lineInfo.lineWords:
-                    if searchTermList[0].lower() in word.lower():
-                        allLines.append(lineInfo.lineString)
-        else:
-            print(len(searchTermList))
-            #Should do this two lines at a time, leapfrogging
-            for lineInfo in lineList:
-                twoLinesWords=lineInfo.lineWords
-                currentIndex=lineList.index(lineInfo)
-                if currentIndex<len(lineList)-1:
-                    for w in lineList[currentIndex+1].lineWords:
-                        twoLinesWords.append(w)
-                    print(twoLinesWords)
-                for word in twoLinesWords:
-                    if searchTermList[0].lower() == word.lower():
-                        index=twoLinesWords.index(word)
-                        i=1
-                        if (index+i)>len(twoLinesWords)-1:
-                            break
-                        else:
-                            #i will refer to the second word in the searchTermList AND will be added to the index to show the next lineWord along
-                            while i<len(searchTermList):
-                                if searchTermList[i].lower() != twoLinesWords[index+i].lower():
-                                    break
-                                else:
-                                    allLines.append(lineInfo.lineString)
-                                i+=1
+
+        for w in wordList:
+            for s in searchTermList:
+                if w.wordString.lower()==s.lower():
+                    #print(str(w.wordPosition) + ": " + str(w.wordString))
+                    relevantWords.append(w)
+
+        finalWords=[]
+        counter=0
+        while counter<len(relevantWords):
+            testList=relevantWords[counter:len(searchTermList)+counter]
+
+            if len(testList)>1:
+                #Current only for two-word search terms; need to change
+                if testList[0].wordPosition==(testList[1].wordPosition)-1:
+                    testListStrings=[]
+                    for t in testList:
+                        testListStrings.append(t.wordString.lower())
+                    if (testListStrings==searchTermList):
+                        for t in testList:
+                            finalWords.append(t)
+            counter+=1
+        """
+        for f in finalWords:
+            print(str(f.wordPosition) + ": " + str(f.wordString))
+        """
+
+        file = open(self.filepath, "r")
+        lineCount=0
+        for line in file:
+            sameLineWords=0
+            for w in finalWords:
+                if w.wordLine==lineCount and sameLineWords==0:
+                    sameLineWords+=1
+                    allLines.append(line)
+            lineCount+=1
+
         return allLines
 
-class lineInfo:
-    lineString=""
-    lineWords=[]
-    def __init__(self, lineString, lineWords):
-        self.lineString=lineString
-        self.lineWords=lineWords
+class word:
+    wordString=""
+    wordLine=None
+    wordPosition=None
+    def __init__(self, wordString, wordLine, wordPosition):
+        self.wordString=wordString
+        self.wordLine=wordLine
+        self.wordPosition=wordPosition
 
 class main:
     def getFile(self):
