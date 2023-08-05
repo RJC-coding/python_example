@@ -29,6 +29,7 @@ class file:
                     if searchTermList[0].lower() in word.lower():
                         allLines.append(lineInfo.lineString)
         else:
+            print(len(searchTermList))
             #Should do this two lines at a time, leapfrogging
             for lineInfo in lineList:
                 twoLinesWords=lineInfo.lineWords
@@ -51,22 +52,6 @@ class file:
                                 else:
                                     allLines.append(lineInfo.lineString)
                                 i+=1
-                """
-                for word in lineInfo.lineWords:
-                    if searchTermList[0].lower() == word.lower():
-                        index=lineInfo.lineWords.index(word)
-                        i=1
-                        if (index+i)>len(lineInfo.lineWords)-1:
-                            break
-                        else:
-                            #i will refer to the second word in the searchTermList AND will be added to the index to show the next lineWord along
-                            while i<len(searchTermList):
-                                if searchTermList[i].lower() != lineInfo.lineWords[index+i].lower():
-                                    break
-                                else:
-                                    allLines.append(lineInfo.lineString)
-                                i+=1
-                """
         return allLines
 
 class lineInfo:
