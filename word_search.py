@@ -88,9 +88,9 @@ class main:
                     result = fileOne.fileSearch(searchTerm)
                     if (len(result)>0):
                         print("Search term exists in file.")
-                        print("\"")
+                        print("\"", end="")
                         for r in result:
-                            print(r)
+                            print(r, end="")
                         print("\"")
                     else:
                         print("Search term is not in file.")
