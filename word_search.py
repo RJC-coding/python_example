@@ -46,6 +46,9 @@ class file:
                             for t in testList:
                                 finalWords.append(t)
                     testCounter+=1
+            else:
+                for t in testList:
+                    finalWords.append(t)
             counter+=1
         """
         for f in finalWords:
@@ -91,7 +94,7 @@ class main:
                         print("\"", end="")
                         for r in result:
                             print(r, end="")
-                        print("\"")
+                        print("\"", end="")
                     else:
                         print("Search term is not in file.")
                 except:
