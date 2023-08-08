@@ -2,8 +2,7 @@ class file:
     def __init__(self, filepath):
         self.filepath=filepath
         
-    def fileRead(self, startPoint, numWords):
-        #startPoint is index of word in entire document, numWords is number of words to look at at a time
+    def fileRead(self):
         file = open(self.filepath, "r")
         wordList=[]
         lineCount=0
@@ -23,7 +22,7 @@ class file:
     def fileSearch(self, searchTerm):
         allLines=[]
         relevantWords=[]
-        wordList = self.fileRead(0, 1)
+        wordList = self.fileRead()
         searchTermList=searchTerm.split()
 
         for w in wordList:
