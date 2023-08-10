@@ -12,14 +12,12 @@ class checker:
 check = checker()
 print("Enter a word to learn if it is a palindrome.")
 word = input()
-wordNoSpace=word.replace(" ", "")
-wordNoSpace=wordNoSpace.replace(",", "")
-wordNoSpace=wordNoSpace.replace("'", "")
-wordNoSpace=wordNoSpace.replace("\"", "")
-wordNoSpace=wordNoSpace.replace(".", "")
-wordNoSpace=wordNoSpace.replace("!", "")
-print(wordNoSpace)
-result = check.check(wordNoSpace)
+
+wordString=""
+for character in word:
+    if (ord(character)>64 and ord(character)<91) or (ord(character)>96 and ord(character)<123):
+        wordString=wordString+character.lower()
+result = check.check(wordString)
 if result:
     print("Palindrome")
 else:
