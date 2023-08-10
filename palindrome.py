@@ -1,8 +1,12 @@
 class checker:
     def check(self, word):
+        if len(word)==0 or len(word)==1:
+            return False
         i=0
         j=len(word)-1
         while j!=i:
+            if i==len(word):
+                return True
             if word[i]!=word[j]:
                 return False
             i=i+1
