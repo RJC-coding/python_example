@@ -13,7 +13,7 @@ def openFile():
         if fileInfo.index(f)>0:
             a = animal()
             a.name=f.split(",")[0]
-            a.description=f.split(",")[1]
+            a.description=f.split(",")[1].strip()
             animalList.append(a)
     file.close()
 
@@ -41,6 +41,23 @@ def editAnimal():
             saveChanges()
             complete=True
 
+def addAnimal():
+    print("Please enter a name.")
+    name=input()
+    print("Please enter a description.")
+    description=input()
+    a = animal()
+    a.name=name
+    a.description=description
+    animalList.append(a)
+    complete=False
+    while (complete==False):
+        print("Press y to save changes.")
+        answer=input()
+        if (answer=='y' or answer=='Y'):
+            saveChanges()
+            complete=True
+
 def saveChanges():
     file = open("animals.csv", "w")
     file.write("Name")
@@ -55,4 +72,15 @@ def saveChanges():
     file.close()
 
 openFile()
-editAnimal()
+running=True
+while(running):
+    print("Edit animals: e")
+    print("Add animal: a")
+    print("Quit: q")
+    answer=input()
+    if answer=='e':
+        editAnimal()
+    elif answer=='a':
+        addAnimal()
+    elif answer=='q':
+        running=False
