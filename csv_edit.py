@@ -44,7 +44,7 @@ def editAnimal():
 def addAnimal():
     nameComplete=False
     while (nameComplete==False):
-        print("Please enter a name.")
+        print("Please enter an animal name.")
         name=input()
         if (len(name)>0):
             nameComplete=True
