@@ -24,7 +24,7 @@ def searchAnimal(searchTerm):
     return None
 
 def editAnimal():
-    print("Please enter an animal.")
+    print("Please enter an animal name.")
     searchTerm=input()
     result = searchAnimal(searchTerm)
     if (result==None):
