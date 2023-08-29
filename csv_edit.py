@@ -24,8 +24,16 @@ def searchAnimal(searchTerm):
     return None
 
 def editAnimal():
-    print("Please enter an animal name.")
-    searchTerm=input()
+    searchComplete=False
+    while(searchComplete==False):
+        print("Please enter an animal name.")
+        searchTerm=input()
+        if ((len(searchTerm))==0):
+            print("Must enter at least one letter.")
+        elif ((len(searchTerm))>50):
+            print("Search term too long.")
+        else:
+            searchComplete=True
     result = searchAnimal(searchTerm)
     if (result==None):
         print("Could not find this.")
