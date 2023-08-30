@@ -31,7 +31,7 @@ def editAnimal():
         if ((len(searchTerm))==0):
             print("Must enter at least one letter.")
         elif ((len(searchTerm))>50):
-            print("Search term too long.")
+            print("Search term is too long.")
         else:
             searchComplete=True
     result = searchAnimal(searchTerm)
