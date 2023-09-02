@@ -7,7 +7,12 @@ import webbrowser
 firefox = webbrowser.Mozilla("C:\\Program Files\
 \Mozilla Firefox\\firefox.exe")
 
-file = open("links.txt")
+print("Enter file to open links from.")
+
+fileName = input()
+
+#file = open("links.txt")
+file = open(fileName)
 for link in file:
     if (link[0:3]=="www"):
         firefox.open(link)
