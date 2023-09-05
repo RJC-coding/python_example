@@ -23,6 +23,6 @@ for character in word:
         wordString=wordString+character.lower()
 result = check.check(wordString)
 if result:
-    print("Palindrome")
+    print("It is a palindrome.")
 else:
-    print("Not a palindrome.")
+    print("It is not a palindrome.")
