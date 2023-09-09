@@ -1,5 +1,7 @@
 running=True
 
+print("FACTORS")
+print()
 while (running):
     print("Enter number or q to exit.")
     entry=input()
