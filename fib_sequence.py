@@ -1,7 +1,7 @@
 a=0
 b=1
 i=0
-print("Fibonacci sequence")
+print("FIBONACCI SEQUENCE")
 print("Enter a number.")
 #number=
 try:
