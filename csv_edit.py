@@ -87,6 +87,7 @@ def saveChanges():
         file.write("\n")
     file.close()
 
+print("Edit animals.csv")
 openFile()
 running=True
 while(running):
