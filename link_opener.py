@@ -4,8 +4,6 @@ import webbrowser
 
 complete=False;
 
-# Passing firefox executable path to the
-# Mozilla class.
 firefox = webbrowser.Mozilla("C:\\Program Files\
 \Mozilla Firefox\\firefox.exe")
 
@@ -15,7 +13,6 @@ while complete==False:
     fileName = input()
 
     try:
-    #file = open("links.txt")
         file = open(fileName)
         for link in file:
             if (link[0:3]=="www"):
@@ -24,7 +21,4 @@ while complete==False:
 
     except:
         print("Could not find this file.")
-      
-    # Using open() function to display the URL.
-    #firefox.open(link)
 
