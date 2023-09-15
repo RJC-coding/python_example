@@ -3,7 +3,7 @@ running=True
 print("FACTORS")
 print()
 while (running):
-    print("Enter number or q to exit.")
+    print("Enter number for factors of that number, or q to exit.")
     entry=input()
     if (entry=='q'):
         running=False
