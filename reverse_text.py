@@ -11,7 +11,7 @@ def wordReverse(word):
 def main():
     word = ""
     while len(word)==0:
-        print("Please enter a word")
+        print("Please enter a word to reverse")
         word=input().strip()
     print(wordReverse(word))
 
