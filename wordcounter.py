@@ -1,5 +1,7 @@
 #https://www.w3schools.com/python/python_dictionaries_add.asp
 #https://www.programiz.com/python-programming/methods/string/lower
+
+print("Times words appeared in example2.txt")
 openFile = open("example2.txt","r")
 wordDict={}
 numbers=[]
