@@ -21,7 +21,6 @@ while complete==False:
         for link in file:
             if (link[0:3]=="www") or (line[0:5=="https"]):
                 firefox.open(link)
-        complete=True
 
     except:
         if (fileName!='q'):
