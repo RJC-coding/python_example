@@ -49,10 +49,6 @@ class file:
                 for t in testList:
                     finalWords.append(t)
             counter+=1
-        """
-        for f in finalWords:
-            print(str(f.wordPosition) + ": " + str(f.wordString))
-        """
 
         file = open(self.filepath, "r")
         lineCount=0
