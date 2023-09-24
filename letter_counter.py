@@ -16,14 +16,17 @@ class main:
     def getFile(self):
         fileFound=False
         while fileFound==False:
-            print("Please enter a filename.")
+            print("Please enter a filename, or press q to exit.")
             filepath = input()
+            if (filepath=="q"):
+                fileFound=True
             try:
                 fileOne = file(filepath)
                 print(fileOne.fileRead())
                 fileFound=True
             except:
-                print("Could not read this file.")
+                if (filepath!="q"):
+                    print("Could not read this file.")
 
 main = main()
 main.getFile()
