@@ -13,16 +13,23 @@ class checker:
             j=j-1
         return True
 
-check = checker()
-print("Enter a word to learn if it is a palindrome.")
-word = input()
+complete=False
 
-wordString=""
-for character in word:
-    if (ord(character)>64 and ord(character)<91) or (ord(character)>96 and ord(character)<123):
-        wordString=wordString+character.lower()
-result = check.check(wordString)
-if result:
-    print("It is a palindrome.")
-else:
-    print("It is not a palindrome.")
+while (complete==False):
+    check = checker()
+    print("Enter a word to learn if it is a palindrome. Press q to exit.")
+    word = input()
+
+    if (word=="q"):
+        complete=True
+    else:
+        wordString=""
+        for character in word:
+            if (ord(character)>64 and ord(character)<91) or (ord(character)>96 and ord(character)<123):
+                wordString=wordString+character.lower()
+        result = check.check(wordString)
+        if result:
+            print("It is a palindrome.")
+        else:
+            print("It is not a palindrome.")
+
