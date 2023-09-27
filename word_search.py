@@ -75,28 +75,31 @@ class main:
     def getFile(self):
         fileFound=False
         while fileFound==False:
-            print("Please enter a filename.")
+            print("Please enter a filename. Enter q to exit.")
             filepath = input()
-            try:
-                fileOne = file(filepath)
+            if (filepath=="q"):
                 fileFound=True
-                print("Please enter a search term.")
-                searchTerm = input().strip()
+            else:
                 try:
-                    result = fileOne.fileSearch(searchTerm)
-                    if (len(result)>0):
-                        print("Search term exists in file.")
-                        print("\"", end="")
-                        for r in result:
-                            print(r, end="")
-                        print("\"", end="")
-                    else:
-                        print("Search term is not in file.")
+                    fileOne = file(filepath)
+                    fileFound=True
+                    print("Please enter a search term.")
+                    searchTerm = input().strip()
+                    try:
+                        result = fileOne.fileSearch(searchTerm)
+                        if (len(result)>0):
+                            print("Search term exists in file.")
+                            print("\"", end="")
+                            for r in result:
+                                print(r, end="")
+                            print("\"", end="")
+                        else:
+                            print("Search term is not in file.")
+                    except:
+                        print("Could not find this search term.")
+                        break
                 except:
-                    print("Could not find this search term.")
-                    break
-            except:
-                print("Could not read this file.")
+                    print("Could not read this file.")
             
 
 main = main()
