@@ -13,9 +13,19 @@ class check():
         if sorted(cleanedFirst)==sorted(cleanedSecond):
             print("Anagram")
 
-check = check()
-print("Enter first phrase")
-first= input()
-print("Enter second phrase")
-second= input()
-check.check(first, second)
+complete=False
+
+print("Press q to exit.")
+while (complete==False):
+    check = check()
+    print("Enter first phrase")
+    first= input()
+    if (first=="q"):
+        complete=True
+    else:
+        print("Enter second phrase")
+        second= input()
+        if (second=="q"):
+            complete=True
+        else:
+            check.check(first, second)
